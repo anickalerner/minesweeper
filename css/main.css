@@ -1,0 +1,33 @@
+#minesweeper{
+    width: 500px;
+    margin: 0 auto;
+}
+h1{
+    text-align: center;
+}
+#controls{
+    width: 20%;
+    background-color: beige;
+}
+#board-pane{
+    width: 80%;
+    float: right;
+    background-color: burlywood;
+}
+#game-board table{
+    width: auto;
+    margin: 0 auto;
+}
+#game-board table td:hover{
+    cursor: pointer;
+}
+#top-pane > div{
+    display: inline-block;
+    width: 32%;
+}
+#smiley{
+    text-align: center;
+}
+#timer{
+    text-align: right;
+}
