@@ -4,26 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/cell.css"/>
+    <link rel="stylesheet" href="css/controls.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <title>Minesweeper</title>
 </head>
 <body onload="initGame()">
-    <div id="minesweeper">
+    <div id="minesweeper" class="container">
         <h1>Minesweeper</h1>
-        <div id="board-pane">
-            <div id="top-pane">
-                <div id="cells-to-reveal"></div>
-                <div id="smiley"></div>
-                <div id="timer">000</div>
+        <div class="row">
+        <div id="controls" class="col-4">
+            <h4>Game Levels</h4>
+            <div id="game-levels" class="list-group">
+            </div>
+            <ul id="hints">
+                
+            </ul>
+        </div>
+        <div id="board-pane" class="col-8">
+            <div id="top-pane" class="navbar">
+                <button id="mines-to-reveal" type="button" class="btn btn-lg btn-primary" disabled></button>
+                <div id="smiley"><span onclick="resetGame()"></span></div>
+                <button id="timer" id="mines-to-reveal" type="button" class="btn btn-lg btn-primary" disabled>000</button>
             </div>
             <div id="game-board"></div>
+            <div class="message"></div>
         </div>
-        <div id="controls">
-            
-        </div>
-        <div class="message"></div>
+    </div>
     </div>
     <script src="js/utils.js"></script>
     <script src="js/cell.js"></script>
+    <script src="js/controls.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
