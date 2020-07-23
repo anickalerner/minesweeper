@@ -1,0 +1,52 @@
+.cell{
+    background-color: rgb(239, 198, 155);
+    color: white;
+    border: 1px solid rgb(67, 53, 35);
+    border-radius: 7px;
+    /*box-shadow: 0 5px #999;*/
+    display: inline-block;
+    /*padding: 6px;*/
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+}
+.cell.disabled{
+    cursor: auto !important;
+ }
+ .cell:not(.disabled):active {
+    background-color: rgb(223, 155, 109);
+    box-shadow: 0 3px gray;
+    transform: translateY(1px);
+ }
+ .cell span.num-1{
+    color: rgb(30, 73, 113);
+ }
+ .cell span.num-2{
+ color: rgb(175, 27, 63);
+}
+.cell span.num-3{
+ color: rgb(196, 162, 135);
+}
+.cell span.num-4{
+ color: rgb(39, 40, 56);
+}
+.cell span.num-5{
+ color: rgb(52, 127, 196);
+}
+.cell span.num-6{
+ color: rgb(72, 66, 50);
+}
+.cell span.num-7{
+ color: rgb(123, 125, 163);
+}
+.cell span.num-8{
+ color: rgb(157, 145, 113);
+}
+.cell-empty{
+    background-color: rgb(235, 223, 214);
+}
+.cell-closed{
+    background-color: rgb(133, 114, 111);
+}

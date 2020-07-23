@@ -1,0 +1,64 @@
+#controls{
+    padding: 10px;
+}
+#top-pane > div{
+    display: inline-block;
+}
+#top-pane button{
+    background-color: rgb(120, 84, 115);
+    border-color: rgb(120, 84, 115);
+    opacity: 1;
+}
+#smiley{
+    text-align: center;
+    font-size: 32px;
+}
+#smiley span:hover{
+    cursor: pointer;
+}
+#timer{
+    text-align: right;
+}
+#game-levels ul{
+    list-style: none;
+    padding: 0;
+}
+#game-levels ul li{
+    padding: 10px;
+    background-color: burlywood;
+    border: 2px solid brown;
+}
+.message{
+    height: 50px;
+    padding: 10px;
+    color: rgb(175, 27, 63);
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.list-group-item.active {
+    border-color: rgb(120, 84, 115) !important;
+    background-color: rgb(120, 84, 115) !important;
+}
+.bi-gem{
+    width: 3em;
+}
+#hints{
+    margin-top: 20px;
+    list-style: none;
+    padding: 0;
+}
+#hints li{
+    display: inline;
+    margin-right: 3px;
+    font-size: 2.5em;
+}
+li:not(.active-hint){
+    border: 5px solid rgb(239, 198, 155);
+}
+li.active-hint{    
+    border: 5px dashed rgb(245, 171, 0);
+    border-radius: 100px;
+}
