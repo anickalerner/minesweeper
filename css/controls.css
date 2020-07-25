@@ -45,20 +45,27 @@
 .bi-gem{
     width: 3em;
 }
-#hints{
+.controlsList{
     margin-top: 20px;
     list-style: none;
     padding: 0;
 }
-#hints li{
+.controlsList li{
     display: inline;
     margin-right: 3px;
     font-size: 2.5em;
 }
-li:not(.active-hint){
+#lives li{
+    margin-right: 1px;
+    font-size: 2em;
+}
+#hints li:not(.active-hint){
     border: 5px solid rgb(239, 198, 155);
 }
-li.active-hint{    
+#hints li.active-hint{    
     border: 5px dashed rgb(245, 171, 0);
     border-radius: 100px;
+}
+#playerName, #bestScores{
+    display: none;
 }
