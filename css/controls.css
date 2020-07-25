@@ -66,6 +66,19 @@
     border: 5px dashed rgb(245, 171, 0);
     border-radius: 100px;
 }
-#playerName, #bestScores{
+#playerName{
     display: none;
+}
+
+#bestScores{
+    display: none;
+    margin-top: 20px;
+}
+button#username{
+    border-color: rgb(120, 84, 115);
+    color: rgb(120, 84, 115); 
+}
+button#username:hover{
+    background-color: rgb(120, 84, 115);
+    color: white;
 }

@@ -87,12 +87,13 @@ function updateCell(board, elCell, cell, flag) {
             setTimeout(function () {
                 unrevealHints(cellsToReveal);
                 removeHint();
-            }, 3000);
+            }, 1000);
             return;
         }
         else {
             switch (cell.type) {
                 case MINE:
+                    if (cell.isMarked) return;
                     if (gMinesweeper.livesCounter >= 1) {
                         cell.isStepped = true;
                         updateMinesToRevealCounter(--gMinesweeper.minesToReveal);

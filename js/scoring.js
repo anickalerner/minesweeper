@@ -24,6 +24,13 @@ function checkBestScore(timer, currLevelLabel) {
 
 function renderUserNameInput() {
     document.querySelector('#playerName').style.display = 'block';
+    document.querySelector('#playerName input').focus();
+}
+
+function submitUsername(ev){
+    if (ev.keyCode === 13 && document.querySelector('#playerName input').value !== ''){
+        insertToBestScores();
+    }
 }
 
 function insertToBestScores() {

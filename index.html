@@ -31,9 +31,9 @@
                 <div class="message"></div>
                 <div id="playerName">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Please insert your name" aria-label="Username" aria-describedby="basic-addon2">
+                        <input type="text" class="form-control" placeholder="Please insert your name" aria-label="Username" aria-describedby="basic-addon2" onkeyup="submitUsername(event)">
                         <div class="input-group-append">
-                          <button class="btn btn-outline-secondary" onclick="insertToBestScores()" type="button">Ok</button>
+                          <button id="username" class="btn btn-outline-secondary" onclick="insertToBestScores()" type="button">Ok</button>
                         </div>
                       </div>
                 </div>
