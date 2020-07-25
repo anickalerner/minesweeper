@@ -13,28 +13,42 @@
     <div id="minesweeper" class="container">
         <h1>Minesweeper</h1>
         <div class="row">
-        <div id="controls" class="col-4">
-            <h4>Game Levels</h4>
-            <div id="game-levels" class="list-group">
+            <div id="controls" class="col-4">
+                <h4>Game Levels</h4>
+                <div id="game-levels" class="list-group">
+                </div>
+                <ul id="hints" class="controlsList">
+                </ul>
+                <ul id="lives" class="controlsList"></ul>
             </div>
-            <ul id="hints">
-                
-            </ul>
-        </div>
-        <div id="board-pane" class="col-8">
-            <div id="top-pane" class="navbar">
-                <button id="mines-to-reveal" type="button" class="btn btn-lg btn-primary" disabled></button>
-                <div id="smiley"><span onclick="resetGame()"></span></div>
-                <button id="timer" id="mines-to-reveal" type="button" class="btn btn-lg btn-primary" disabled>000</button>
+            <div id="board-pane" class="col-8">
+                <div id="top-pane" class="navbar">
+                    <button id="mines-to-reveal" type="button" class="btn btn-lg btn-primary" disabled></button>
+                    <div id="smiley"><span onclick="resetGame()"></span></div>
+                    <button id="timer" id="mines-to-reveal" type="button" class="btn btn-lg btn-primary" disabled>000</button>
+                </div>
+                <div id="game-board"></div>
+                <div class="message"></div>
+                <div id="playerName">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Please insert your name" aria-label="Username" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                          <button class="btn btn-outline-secondary" onclick="insertToBestScores()" type="button">Ok</button>
+                        </div>
+                      </div>
+                </div>
             </div>
-            <div id="game-board"></div>
-            <div class="message"></div>
         </div>
-    </div>
+        <div class="row">
+            <div id="bestScores">
+                <h4></h4>
+            </div>
+        </div>
     </div>
     <script src="js/utils.js"></script>
     <script src="js/cell.js"></script>
     <script src="js/controls.js"></script>
+    <script src="js/scoring.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
