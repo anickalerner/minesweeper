@@ -11,12 +11,15 @@ var gMinesweeper = {
     minesToReveal: 0,
     revealedCounter: 0,
     markedMinesCounter: 0,
+    markedRight: 0,
     isOn: false,
     timer: '000',
     timerInterval: null,
     firstClick: true,
     hintCounter: 3,
-    isHintMode: false
+    isHintMode: false,
+    livesCounter: 3,
+    bestScoresTableSize: 10
 };
 // cell types
 const EMPTY = '⬜';
@@ -32,8 +35,10 @@ const SMILEY_LOSE = '😩';
 const START_TIMER = '000';
 
 const HINT = '💡';
+const LIFE = '❤';
 
 function initGame() {
+    localStorage.setItem('minesweeper-easy', null);
     setLevelsDisplay(gMinesweeper.levels);
     setGameLevel(0);
 }
@@ -41,6 +46,7 @@ function initGame() {
 function setGameLevel(currLevelId) {
     gMinesweeper.currLevel = currLevelId;
     renderActiveLevelButton(currLevelId);
+    setBestScoresTable(gMinesweeper.levels[gMinesweeper.currLevel].label); // in scoring.js
     resetGame();
 }
 
@@ -55,9 +61,12 @@ function resetGame() {
     gMinesweeper.firstClick = true;
     gMinesweeper.hintCounter = 3;
     gMinesweeper.isHintMode = false;
+    gMinesweeper.livesCounter = Math.min(level.minesNum, 3);
     document.querySelector(".message").innerText = '';
+    document.querySelector('#playerName').style.display = 'none';
     if (gMinesweeper.timerInterval) clearInterval(gMinesweeper.timerInterval);
     setControls(); // in controls.js
+    
     renderBoard(gMinesweeper.board);
     console.clear();
 }
@@ -82,11 +91,10 @@ function setMines(board, minesNum, notOnPosition) {
             continue;
         }
         cell.type = MINE;
-        cell.isMine = true;
         mines.push(cell);
     }
-    for (var i = 0; i < board.length; i++){
-        for (var j = 0; j < board[0].length; j++){
+    for (var i = 0; i < board.length; i++) {
+        for (var j = 0; j < board[0].length; j++) {
             setMinesNegsCount(board, i, j);
         }
     }
@@ -121,11 +129,11 @@ function renderBoard(board) {
             elTd.classList.add('cell', `cell-${i}-${j}`, 'cell-closed');
             elTd.addEventListener('contextmenu', function (ev) {
                 ev.preventDefault();
-                cellMarked(board, this);
+                cellRightClicked(board, this);
                 return false;
             }, false);
             elTd.addEventListener('click', function (ev) {
-                cellClicked(board, this, true);
+                cellLeftClicked(board, this, true);
                 return false;
             });
             elTr.appendChild(elTd);
@@ -154,50 +162,49 @@ function getPrettyTime(time) {
     return time;
 }
 
+function loseLife(cell) {
+    gMinesweeper.livesCounter--;
+    document.querySelector("#lives li").remove();
+}
+
 function checkGameOver(cell) {
-    // revealed a bomb
-    if (cell.type === MINE && cell.revealed) {
+    if (gMinesweeper.revealedCounter === getBoardSize(gMinesweeper.board) - gMinesweeper.mines.length) {
+        endGame(true);
+    }
+    if (gMinesweeper.livesCounter === 0){
         endGame(false);
-        return;
     }
-    // not all cells are revealed
-    if ((gMinesweeper.revealedCounter + gMinesweeper.markedMinesCounter) < getBoardSize(gMinesweeper.board)) {
-        return;
-    }
-
-    // not all mines are marked
-    var mines = gMinesweeper.mines;
-    for (var i = 0; i < mines.length; i++) {
-        var mine = mines[i];
-        if (!mine.isMarked) {
-            return;
-        }
-    }
-
-    // more mines are marked than expected
-    if (gMinesweeper.markedMinesCounter !== mines.length) {
-        endGame(false);
-        return;
-    }
-    endGame(true);
 }
 
 function endGame(isWin) {
     gMinesweeper.isOn = false;
     if (isWin) {
         document.querySelector(".message").innerText = 'Congratulations! You won.';
+        markAllMines();
         updateSmiley(SMILEY_WIN);
+        checkBestScore(gMinesweeper.timer, gMinesweeper.levels[gMinesweeper.currLevel].label);
     }
     else {
         document.querySelector(".message").innerText = 'Sorry, you lost. Better luck next time.';
         updateSmiley(SMILEY_LOSE);
     }
     clearInterval(gMinesweeper.timerInterval);
+    //loseLife();
     var cells = document.querySelectorAll('.cell');
     cells.forEach(function (cell) {
         cell.classList.add('disabled');
     });
+}
 
+function markAllMines() {
+    for (var i = 0; i < gMinesweeper.mines.length; i++) {
+        var mine = gMinesweeper.mines[i];
+        if (!(mine.isMarked || mine.isStepped)){
+            toggleFlag(mine);
+            var elCell = getCellElementFromModel(mine.i, mine.j)
+            elCell.innerHTML = renderCell(mine);
+        }
+    }
 }
 
 

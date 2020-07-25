@@ -5,6 +5,7 @@ function setControls(){
     document.querySelector("#timer").innerText = '000';
     updateMinesToRevealCounter(gMinesweeper.levels[gMinesweeper.currLevel].minesNum);
     setHints();
+    setLives();
 }
 
 function updateMinesToRevealCounter(num){
@@ -41,6 +42,15 @@ function setHints(){
         hintStr += `<li onclick="revealHint(this)">${HINT}</li>`;
     }
     hintsPane.innerHTML = hintStr;
+}
+
+function setLives(){
+    var livesPane = document.querySelector('#lives');
+    var lifeStr = '';
+    for (var i = 0; i < gMinesweeper.livesCounter; i++){
+        lifeStr += `<li>${LIFE}</li>`;
+    }
+    livesPane.innerHTML = lifeStr;
 }
 
 function revealHint(elLi){
