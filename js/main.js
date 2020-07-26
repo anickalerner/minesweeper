@@ -38,7 +38,6 @@ const HINT = '💡';
 const LIFE = '❤';
 
 function initGame() {
-    localStorage.setItem('minesweeper-easy', null);
     setLevelsDisplay(gMinesweeper.levels);
     setGameLevel(0);
 }
