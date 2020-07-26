@@ -25,6 +25,9 @@ function renderCell(cell) {
                 spanText = ' ';
                 spanClass = ' class="cell-empty"';
                 break;
+            case MINE: // in a hint mode
+                spanText = MINE;
+                break;
         }
         preventHoverCell(cell);
     }
@@ -140,6 +143,7 @@ function unrevealHints(cells) {
         var cell = cells[i];
         cell.revealed = false;
         gMinesweeper.revealedCounter--;
+        gMinesweeper.isHintMode = false;
         var elCell = getCellElementFromModel(cell.i, cell.j);
         elCell.innerHTML = renderCell(cell);
     }
@@ -149,7 +153,7 @@ function revealCell(cell) {
     if (!cell.revealed) {
         cell.revealed = true;
         gMinesweeper.revealedCounter++;
-        console.log(cell.i + ' ' + cell.j + ' is revealed. Counter: ' + gMinesweeper.revealedCounter);
+        //console.log(cell.i + ' ' + cell.j + ' is revealed. Counter: ' + gMinesweeper.revealedCounter);
     }
 }
 
